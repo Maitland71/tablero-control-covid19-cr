@@ -13,6 +13,7 @@ output:
 #-------------------- Paquetes --------------------
 
 library(flexdashboard)
+library(emojifont)
 library(plotly)
 library(dygraphs)
 library(dplyr)
@@ -40,11 +41,11 @@ icono_activos <- 'fas fa-user-md'
 icono_recuperados <- 'fas fa-user-md'
 icono_fallecidos <- 'fas fa-user-md'
 
-icono_nuevos_positivos <- 'fas fa-user-md'
+icono_nuevos_positivos <- 'fa-virus'
 
-icono_hospitalizados <- '<i class="far fa-hospital"></i>'
-icono_salon <- 'fas fa-user-md'
-icono_uci <- 'fas fa-user-md'
+icono_hospitalizados <- 'far fa-hospital'
+icono_salon <- 'fa-procedures'
+icono_uci <- 'fa-procedures'
 
 #--------------- Otros parámetros -----------------
 
