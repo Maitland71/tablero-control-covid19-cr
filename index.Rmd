@@ -54,12 +54,20 @@ caracter_separador <- ','
 
 #--------------- Archivos de datos ----------------
 
-archivo_general_pais <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/06_30_CSV_GENERAL.csv'
+archivo_general_pais <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/07_02_CSV_GENERAL.csv'
 
-archivo_positivos_cantones <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/06_30_CSV_POSITIVOS.csv'
-archivo_activos_cantones <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/06_30_CSV_ACTIVOS.csv'
-archivo_recuperados_cantones <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/06_30_CSV_RECUP.csv'
-archivo_fallecidos_cantones <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/06_30_CSV_FALLECIDOS.csv'
+
+archivo_positivos_cantones <-'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/07_02_CSV_POSITIVOS.csv'
+
+archivo_activos_cantones <- 'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/07_02_CSV_ACTIVOS.csv'
+
+
+archivo_recuperados_cantones<-'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/07_02_CSV_RECUP.csv'
+ 
+
+archivo_fallecidos_cantones <-'https://raw.githubusercontent.com/geoprocesamiento-2020i/datos/master/covid19/ms/07_02_CSV_FALLECIDOS.csv'
+
+
 
 #---------------------- Datos ---------------------
 
@@ -163,7 +171,8 @@ Row
 
 ### Hospitalizados {.value-box}
 ```{r}
-valueBox(value = paste(format(df_general_pais_ultima_fecha$hospital, big.mark = ","), "", sep = " "), 
+valueBox(value = paste(format(df_general_pais_ultima_fecha$hospital, big.mark = ","), "(", 
+                       (df_general_pais_ultima_fecha$nue_salon), "+", ")", sep = " "), 
          caption = "Total de hospitalizados", 
          icon = icono_hospitalizados,
          color = color_hospitalizados
@@ -172,9 +181,8 @@ valueBox(value = paste(format(df_general_pais_ultima_fecha$hospital, big.mark = 
 
 ### En salón {.value-box}
 ```{r}
-valueBox(value = paste(format(df_general_pais_ultima_fecha$salon, big.mark = ","), " (",
-                       round(100 * df_general_pais_ultima_fecha$salon / df_general_pais_ultima_fecha$hospital, 1), 
-                       "%)", sep = ""), 
+valueBox(value = paste(format(df_general_pais_ultima_fecha$salon, big.mark = ","), " (", 
+                       (df_general_pais_ultima_fecha$nue_salon), "+", ")", sep = ""), 
          caption = "Hospitalizados en salón",
          icon = icono_salon, 
          color = color_salon
