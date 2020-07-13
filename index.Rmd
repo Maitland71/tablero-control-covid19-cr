@@ -46,7 +46,10 @@ icono_hospitalizados <- 'far fa-hospital'
 icono_salon <- 'fa-procedures'
 icono_uci <- 'fa-procedures'
 
-icono_mujeres <- 'fa-users-plus'
+icono_mujeres <- 'far fa-pills'
+icono_hombres <- 'far fa-pills'
+icono_menores <- 'far fa-pills'
+icono_am <- 'far fa-pills'
 
 #--------------- Otros parámetros -----------------
 
@@ -359,7 +362,44 @@ valueBox(value = paste(format(df_general_pais_ultima_fecha$muj_posi, big.mark = 
                        "%)", sep = ""), 
          caption = "Total de mujeres positivas",
          icon = icono_mujeres, 
-         color = color_activos
+         color = color_positivos
+)
+```
+
+
+
+### Hombres {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$hom_posi, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$hom_posi / df_general_pais_ultima_fecha$positivos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de hombres positivos",
+         icon = icono_hombres, 
+         color = color_positivos
+)
+```
+
+
+
+### Menores {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$menor_posi, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$menor_posi / df_general_pais_ultima_fecha$positivos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de menores positivos",
+         icon = icono_menores, 
+         color = color_positivos
+)
+```
+
+### Adultos Mayores {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$am_posi, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$am_posi / df_general_pais_ultima_fecha$positivos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de adultos mayores positivos",
+         icon = icono_am, 
+         color = color_positivos
 )
 ```
 
