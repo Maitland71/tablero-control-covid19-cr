@@ -46,10 +46,10 @@ icono_hospitalizados <- 'far fa-hospital'
 icono_salon <- 'fa-procedures'
 icono_uci <- 'fa-procedures'
 
-icono_mujeres <- 'far fa-pills'
-icono_hombres <- 'far fa-pills'
-icono_menores <- 'far fa-pills'
-icono_am <- 'far fa-pills'
+icono_mujeres <- 'fa-pills'
+icono_hombres <- 'fa-pills'
+icono_menores <- 'fa-pills'
+icono_am <- 'fa-pills'
 
 #--------------- Otros parámetros -----------------
 
