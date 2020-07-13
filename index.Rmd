@@ -46,6 +46,8 @@ icono_hospitalizados <- 'far fa-hospital'
 icono_salon <- 'fa-procedures'
 icono_uci <- 'fa-procedures'
 
+icono_mujeres <- 'fa-users-plus'
+
 #--------------- Otros parámetros -----------------
 
 # Separador para lectura de datos CSV
@@ -338,14 +340,29 @@ Row {data-height=1}
 Row
 -----------------------------------------------------------------------
 
+
 ### Casos positivos {.value-box}
 ```{r}
-valueBox(value = paste(format(df_general_pais_ultima_fecha$positivos, big.mark = ","), "", sep = " "), 
+valueBox(value = paste(format(df_general_pais_ultima_fecha$positivos, big.mark = ","), " (", 
+                       (df_general_pais_ultima_fecha$nue_posi), "+", ")" ,  sep = " "), 
          caption = "Total de casos positivos", 
          icon = icono_positivos, 
          color = color_positivos
+ )
+```
+
+
+### Mujeres {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$muj_posi, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$muj_posi / df_general_pais_ultima_fecha$positivos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de mujeres positivas",
+         icon = icono_mujeres, 
+         color = color_activos
 )
 ```
+
 
 Row {data-width=400}
 -----------------------------------------------------------------------
