@@ -483,10 +483,7 @@ Row
 ### Casos activos {.value-box}
 ```{r}
 valueBox(value = paste(format(df_general_pais_ultima_fecha$activos, big.mark = ","), " (", 
-                       (df_general_pais_ultima_fecha$nue_acti), "+", ")" ," (",
-                       round(100 * df_general_pais_ultima_fecha$activos
-                             / df_general_pais_ultima_fecha$positivos, 1), 
-                       "%)",  sep = " "), 
+                       (df_general_pais_ultima_fecha$nue_acti), "+", ")" ,  sep = " "), 
          caption = "Total de casos activos
          ", 
          icon = icono_activos, 
