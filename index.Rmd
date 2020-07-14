@@ -762,3 +762,141 @@ Casos fallecidos
 Row {data-height=1}
 -----------------------------------------------------------------------
 ### **Última actualización: `r  df_general_pais_ultima_fecha$FECHA`**
+
+
+
+
+Row
+-----------------------------------------------------------------------
+
+
+### Casos fallecidos {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$fallecidos, big.mark = ","), " (", 
+                       (df_general_pais_ultima_fecha$nue_falleci), "+", ")" ,  sep = " "), 
+         caption = "Total de casos fallecidos
+         ", 
+         icon = icono_fallecidos, 
+         color = color_fallecidos
+ )
+```
+
+
+### Mujeres {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$muj_fall, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$muj_fall
+                             / df_general_pais_ultima_fecha$fallecidos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de mujeres fallecidas",
+         icon = icono_fallecidos, 
+         color = color_fallecidos
+)
+```
+
+
+
+### Hombres {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$hom_fall, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$hom_fall 
+                             / df_general_pais_ultima_fecha$fallecidos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de hombres fallecidos",
+         icon = icono_fallecidos, 
+         color = color_fallecidos
+)
+```
+
+
+
+### Menores {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$menor_fall, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$menor_fall
+                             / df_general_pais_ultima_fecha$fallecidos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de menores fallecidos",
+         icon = icono_fallecidos, 
+         color = color_fallecidos
+)
+```
+
+### Adultos Mayores {.value-box}
+```{r}
+valueBox(value = paste(format(df_general_pais_ultima_fecha$am_fall, big.mark = ","), " (",
+                       round(100 * df_general_pais_ultima_fecha$am_fall
+                             / df_general_pais_ultima_fecha$fallecidos, 1), 
+                       "%)", sep = ""), 
+         caption = "Total de adultos mayores falllecidos",
+         icon = icono_fallecidos, 
+         color = color_fallecidos
+)
+```
+
+
+Row {data-width=400}
+-----------------------------------------------------------------------
+
+### Mapa de casos fallecidos en cantones
+```{r}
+paleta_morado <- colorBin(palette = "RdPu", 
+                        domain = sf_fallecidos_cantones_ultima_fecha$fallecidos,
+                        bins = 10
+               )
+
+leaflet_cantones_recuperados <- leaflet(sf_fallecidos_cantones_ultima_fecha) %>% 
+  fitBounds(lng1 = -86, lng2 = -82, lat1 = 8, lat2 = 11) %>%
+  addProviderTiles(providers$OpenStreetMap.Mapnik, group = "OpenStreetMap") %>%
+  addPolygons(fillColor = ~paleta_morado(fallecidos), stroke=T, fillOpacity = 1,
+              color="black", weight=0.2, opacity= 0.5,
+              group = "Cantones",
+              popup = paste("Provincia: ", sf_recuperados_cantones_ultima_fecha$provincia, "<br>",
+                            "Cantón: ", sf_recuperados_cantones_ultima_fecha$canton, "<br>",
+                            "fallecidos: ", sf_fallecidos_cantones_ultima_fecha$fallecidos
+                            )
+  ) %>%
+  addLegend("bottomright", pal = paleta_morado, values = ~fallecidos,
+    title = "Casos fallecidos",
+    opacity = 1
+  ) %>%  
+  addLayersControl(
+    baseGroups = c("OpenStreetMap"),
+    overlayGroups = c("Cantones"),
+    options = layersControlOptions(collapsed = TRUE)    
+  ) %>%  
+  addMiniMap(
+    toggleDisplay = TRUE,
+    position = "bottomleft",
+    tiles = providers$OpenStreetMap.Mapnik
+  )
+
+# Despliegue del mapa
+leaflet_cantones_recuperados
+```
+```
+
+### Gráfico de cantones con mayor cantidad de casos activos
+```{r}
+st_drop_geometry(sf_fallecidos_cantones_ultima_fecha) %>%
+mutate(canton = factor(canton, levels = canton)) %>%
+top_n(n = 10, wt = fallecidos) %>%  
+plot_ly(x = ~ canton, 
+        y = ~ fallecidos, 
+        type = "bar", 
+        text = ~ fallecidos,
+        textposition = 'auto',
+        marker = list(color = color_fallecidos)
+) %>%
+layout(yaxis = list(title = "Cantidad de casos fallecidos"),
+       xaxis = list(title = ""),
+       margin = list(l = 10,
+                     r = 10,
+                     b = 10,
+                     t = 10,
+                     pad = 2
+                )
+) 
+```
+
+
