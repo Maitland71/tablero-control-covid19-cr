@@ -704,12 +704,12 @@ paleta_verde <- colorBin(palette = "Greens",
 leaflet_cantones_recuperados <- leaflet(sf_recuperados_cantones_ultima_fecha) %>% 
   fitBounds(lng1 = -86, lng2 = -82, lat1 = 8, lat2 = 11) %>%
   addProviderTiles(providers$OpenStreetMap.Mapnik, group = "OpenStreetMap") %>%
-  addPolygons(fillColor = ~paleta_roja(recuperados), stroke=T, fillOpacity = 1,
+  addPolygons(fillColor = ~paleta_verde(recuperados), stroke=T, fillOpacity = 1,
               color="black", weight=0.2, opacity= 0.5,
               group = "Cantones",
               popup = paste("Provincia: ", sf_activos_cantones_ultima_fecha$provincia, "<br>",
                             "Cantón: ", sf_activos_cantones_ultima_fecha$canton, "<br>",
-                            "recuperados: ", sf_activos_cantones_ultima_fecha$recuperados
+                            "recuperados: ", sf_recuperados_cantones_ultima_fecha$recuperados
                             )
   ) %>%
   addLegend("bottomright", pal = paleta_verde, values = ~recuperados,
