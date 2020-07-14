@@ -561,7 +561,13 @@ leaflet_cantones_activos <- leaflet(sf_activos_cantones_ultima_fecha) %>%
   addProviderTiles(providers$OpenStreetMap.Mapnik, group = "OpenStreetMap") %>%
   addPolygons(fillColor = ~paleta_roja(activos), stroke=T, fillOpacity = 1,
               color="black", weight=0.2, opacity= 0.5,
-              group = "Cantones",
+             highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+               group = "Cantones",
               popup = paste("Provincia: ", sf_activos_cantones_ultima_fecha$provincia, "<br>",
                             "Cantón: ", sf_activos_cantones_ultima_fecha$canton, "<br>",
                             "activos: ", sf_activos_cantones_ultima_fecha$activos
