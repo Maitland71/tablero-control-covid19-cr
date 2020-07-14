@@ -707,8 +707,8 @@ leaflet_cantones_recuperados <- leaflet(sf_recuperados_cantones_ultima_fecha) %>
   addPolygons(fillColor = ~paleta_verde(recuperados), stroke=T, fillOpacity = 1,
               color="black", weight=0.2, opacity= 0.5,
               group = "Cantones",
-              popup = paste("Provincia: ", sf_activos_cantones_ultima_fecha$provincia, "<br>",
-                            "Cantón: ", sf_activos_cantones_ultima_fecha$canton, "<br>",
+              popup = paste("Provincia: ", sf_recuperados_cantones_ultima_fecha$provincia, "<br>",
+                            "Cantón: ", sf_recuperados_cantones_ultima_fecha$canton, "<br>",
                             "recuperados: ", sf_recuperados_cantones_ultima_fecha$recuperados
                             )
   ) %>%
